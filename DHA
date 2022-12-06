@@ -1,237 +1,504 @@
-#include<stdio.h>
-#include<stdlib.h>
-
-struct node
+Q- Create a Linked list 
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+ int data;
+ struct Node* next;
+ };
+void printList(struct Node* n)
 {
-
-int data;
-
-struct node* left;
-struct node* right;
-};
-
-struct node* newNode(int data)
-{
-
-struct node* node = (struct node*)malloc(sizeof(struct node));
-
-node->data = data;
-node->left = NULL;
-node->right = NULL;
-
-return(node);
+ while (n != NULL) {
+ printf(" %d ", n->data);
+ n = n->next;
+ }
 }
-
-int size(struct node* node)
-{
-if (node==NULL)
-
-return 0;
-
-else
-
-return(size(node->left) +1+ size(node->right));
-}
-
 int main()
 {
-
-struct node* root = newNode(1);
-root->left = newNode(2);
-root->right = newNode(3);
-root->left->left = newNode(4);
-root->left->right = newNode(5);
-
-printf("Size if the tree is %d",size(root));
-
-getchar();
+ struct Node* head = NULL;
+ struct Node* second = NULL;
+ struct Node* third = NULL;
+ head = (struct Node*)malloc(sizeof(struct Node));
+ second = (struct Node*)malloc(sizeof(struct Node));
+ third = (struct Node*)malloc(sizeof(struct Node));
+ head->data = 1; 
+ head->next = second; 
+ second->data = 2; 
+ second->next = third;
+ third->data = 3; 
+ third->next = NULL;
+ printList(head);
 return 0;
+ }
+Q-size of tree 
+#include <stdio.h>
+#include <stdlib.h>
+Struct node 
+{
+ int data;
+ Struct node* left;
+ Struct node* right;
+};
+Struct node* newNode(int data) 
+{
+ Struct node* node = (struct node*)
+ Malloc(sizeof(struct node));
+ Node->data = data;
+ Node->left = NULL;
+ Node->right = NULL;
+ Return(node);
 }
-
-
+int size(struct node* node) 
+{ 
+ If (node==NULL) 
+ return 0;
+ else 
+ Return(size(node->left) + 1 + size(node->right)); 
+}
+int main()
+{
+Struct node *root = newNode(1);
+ Root->left = newNode(2);
+ Root->right = newNode(3);
+ Root->left->left = newNode(4);
+ Root->left->right = newNode(5); 
+ Printf(“Size of the tree is %d”, size(root)); 
+ Return 0;
+}
+Q-Tree delete
 #include<stdio.h>
 #include<stdlib.h>
-
-typedef struct node {
-int item;
-struct node* left;
-struct node* right;
-
-}Node;
-
-void AddNode(Node** root,int item)
-{
-Node* temp= *root;
-Node* prev= *root;
-
-if (*root== NULL) {
-root = (Node)malloc(sizeof(Node));
-
-(*root->item = item;
-(*root->left = (*root)->right = NULL;
+Struct node {
+ Int data;
+ Struct node* left;
+ Struct node* right;
+};
+Struct node* addnode(int data) {
+ Struct node* node = (struct node*)
+ Malloc(sizeof(struct node));
+ Node->data = data;
+ Node->left = NULL;
+ Node->right = NULL;
+ return(node);
 }
-else{
-while(temp != NULL){
- if (item > temp->item){
- prev = temp;
- temp = temp->right;
- }
- else {
-  prev = temp;
-  temp = temp->left;
-  }
- }
- temp = (Node*)malloc(sizeof(Node));
- temp->item = item;
- 
- if (item >=prev->item)
-  prev->right = temp;
- else
-  prev->left = temp;
-  }
- }
-  
-  void DFS(Node* root)
-  {
-   if (root) {
-   if (root->left)
-    DFS(root->left);
-    
-    if(root->right)
-    DFS(root->right);
-    
-    printf(" %d ", root->item);
-    }
-   }
-   
-   int search(Node* root,int item)
-   {
-   while (root != NULL){
-   if (item > root->item)
-   root = root->right;
-   else if (item < root->item)
-      root = root->left;
-     else
-      return 1;
-    }
-    return 0;
-   }
-   
-   int main()
-   {
-   
-   struct node* head = NULL;
-   
-   AddNode(&head, 10);
-   AddNode(&head, 20);
-   AddNode(&head, 40);
-   AddNode(&head, 30);
-   AddNode(&head, 60);
-   
-   printf("Tree Item:\n");
-   DFS(head);
-   printf("\n");
-   
-   if (search(head, 70))
-    printf("%d item found in tree.\n" , 70);
-   else
-    printf("%d item not found in tree. \n" , 70);
-    
-    if (search(head, 40))
-     printf("%d item found in tree. \n" , 40);
-    else
-     printf("%d item not found in tree, \n", 40);
-     
-     return 0;
-    }
-    
-    
-    #include<stdio.h>
-    #include<stdlib.h>
-    struct node;
-     int data;
-     struct node* left;
-     struct node* right;
-    };
-    struct node* addnode(int data) {
-      struct node* node = (struct node*)malloc(sizeof(struct node));
-     node->data = data;
-     node->left = NULL;
-     node->right = NULL;
-     return(node);
-    }
-   void nodedel(struct node*) {
-    if (node == NULL) return;
-    nodedel(node->left);
-    nodedel(node->right);
-     printf("Node deleted, value is %d", node->data);
-      free(node);
-     }
-      int main() {
-        struct node *root = addnode(9);
-        root->left = addnode(4);
-        root->right = addnode(15);
-        root->left->left = addnode(2);
-        root->left->right = addnode(6);
-        root->right->left = addnode(12);
-        root->right->right = addnode(17);
-        nodedel(root);
-        root = NULL;
-        printf(" Tree deleted ");
-        return 0;
-       }
-       
-       
-       #include<stdio.h>
-       #include<stdlib.h.
-        struct Node {
-        int data;
-        struct Node *left, *right;
-       };
-       struct Node* newNode(int data)
-       {
-          struct Node* node= (struct Node*)malloc(sizeof(struct Node));
-          
-          node->data = data;
-          node->left = node->right = NULL;
-           return (node);
-           }
-           
-            int findMax(struct Node* root)
-            {
-             if (root = NULL)
-             int res = root->data;
-             int lres = findMax(root->left);
-             int rres = findMax(root->right);
-             
-             if (lres>res)
-              res=lres;
-              
-              if (rres>res)
-              res=rres;
-              
-              return res;
-             }
-              
-              int main(void)
-              {
-              
-               struct Node* NewRoot = NULL;
-               struct Node* root = newNode(2);
-               root->left = newNode(7);
-               root->right = newNode(5);
-               root->left-> = newNode(6);
-               root->left->right->left = newNode(1);
-               root->left->right->right = newNode(11);
-               root->right->right = newNode(9);
-               root->right->right->left = newNode(4);
-               
-               printf("Maximum element is %d \n" , findMax(root));
-               
-               return 0;
-              }
-               
-    
-    
-    
+Void nodedel(struct node* node) {
+ If (node == NULL) return;
+ Nodedel(node->left);
+ Nodedel(node->right);
+ Printf(“Node deleted, value is %d”, node->data);
 
+Free(node);
+}
+int main() {
+ Struct node *root = addnode(9);
+ Root->left = addnode(4);
+ Root->right = addnode(15);
+ Root->left->left = addnode(2);
+ Root->left->right = addnode(6);
+ Root->right->left = addnode(12);
+ Root->right->right = addnode(17);
+ Nodedel(root);
+ Root = NULL;
+ Printf(“ Tree deleted “);
+ Return 0;
+}
+Q-Maximum element 
+#include <stdio.h>
+#include <stdlib.h>
+Struct Node {
+ int data;
+ Struct Node *left, *right;
+};
+Struct Node* newNode(int data)
+{
+ Struct Node* node
+ = (struct Node*)malloc(sizeof(struct Node));
+ Node->data = data;
+ Node->left = node->right = NULL;
+ Return (node);
+
+}
+int findMax(struct Node* root)
+{
+ If (root == NULL)
+ int res = root->data;
+ int lres = findMax(root->left);
+ int rres = findMax(root->right);
+ if (lres>res)
+ Res=lres;
+ if (res > res)
+ Res=rres;
+ Return res;
+}
+int main(void)
+{
+ Struct Node* NewRoot = NULL;
+ Struct Node* root = newNode(2);
+ Root->left = newNode(7);
+ Root->right = newNode(5);
+ Root->left->right = newNode(6);
+ Root->left->right->left = newNode(1);
+ Root->left->right->right = newNode(11);
+ Root->right->right = newNode(9);
+ Root->right->right->left = newNode(4);
+ Printf(“Maximum element is %d \n”, findMax(root));
+ Return 0;
+}
+Q-DFS
+#include <stdio.h>
+#include <stdlib.h>
+#define V 10
+int main() {
+ Struct stack {
+ int adj[V];
+ int top;
+ }; 
+ Struct node {
+ int d;
+ Struct node * next;
+ }; 
+ Struct Graph {
+ Struct node * vertices[V]; 
+ int vis[V];
+ };
+ Struct edge {
+ int s;
+ int d;
+ };
+ Struct stack * createstack() {
+ Struct stack* Q = malloc(sizeof(struct stack));
+ Q->top = -1;
+ return Q;
+ }
+ 
+ Struct stack * push(struct stack * q, int toVisit){
+ Struct stack * Q = q;
+ Q->top++;
+ Q->adj[Q->top] = toVisit;
+return Q;
+ }
+ 
+ Int pop(struct stack * q){
+ Struct stack * Q = q;
+ Int removed = Q->adj[Q->top];
+ Q->top--;
+ return removed;
+ }
+ 
+ Void printstack(struct stack * q){
+ Struct stack * Q = q;
+ For(int I = 0 ; I < Q->top; i++){
+ Printf(“%d,”,Q->adj[i]);
+ }
+ Printf(“\n”);
+ }
+ 
+ Struct Graph * e2g(struct edge edges[], int e){
+ Struct Graph * graph = (struct Graph *)malloc(sizeof(struct Graph));
+ For (int I = 0; I < V; i++){
+ Graph->vertices[i] = NULL; 
+ }
+ for (int I = 0; I < e; i++){ //loop to add the edges to the graph
+ int src = edges[i].s;
+ int dest = edges[i].d;
+ 
+ Struct node * newNode = (struct node *)malloc(sizeof(struct node));
+ newNode->d = dest;
+newNode->next = graph->vertices[src]; 
+ graph->vertices[src] = newNode; 
+ }
+ return graph;
+ }
+ Void dfs(struct Graph * gr, int start){
+ for (int I = 0; I < V; i++){
+ Gr->vis[i] = 0;
+ }
+ Printf(“>>DFS Traversal<<\n”);
+ Struct Graph * graph = gr;
+ Struct stack * q = createstack();
+ Q = push(q, start); 
+ Graph->vis[start] = 1;
+ While (q->top > -1){ //while loop until the stack is empty
+ 
+ int visit = pop(q); 
+ Printf(“%d->”, visit); 
+ Struct node * temp = graph->vertices[visit]; 
+ While (temp){
+ If (graph->vis[temp->d] == 0){
+ Q = push(q, temp->d);
+ Graph->vis[temp->d] = 1;
+ }
+ Temp = temp->next;
+ } 
+ }
+ Printf(“END\n”);
+ }
+Struct edge edges [] = {{1,2}, {1,3}, {2,3}, {2,4}, {3,4}, {4,5}};
+ int num = sizeof(edges)/sizeof(edges[0]); 
+ Struct Graph * g = e2g(edges, num);
+ dfs(g,1); 
+ return 0;
+}
+Q- AVL insertion
+#include<studio h>
+#include<stdlib.h>
+Struct Node
+{
+ int key;
+ Struct Node *left;
+ Struct Node *right;
+ Int height;
+};
+Int height(struct Node *N)
+{
+ If (N == NULL)
+ Return 0;
+ Return N->height;
+}
+Int max(int a, int b)
+{
+ Return (a > b)? a : b;
+Struct Node* newNode(int key)
+{
+ Struct Node* node = (struct Node*)
+Malloc(sizeof(struct Node));
+ Node->key = key;
+ Node->left = NULL;
+ Node->right = NULL;
+ Node->height = 1; 
+ Return(node);
+}
+Struct Node *rightRotate(struct Node *y)
+{
+ Struct Node *x = y->left;
+ Struct Node *T2 = x->right;
+ x->right = y;
+ y->left = T2;
+ y->height = max(height(y->left),
+ height(y->right)) + 1;
+ x->height = max(height(x->left),
+ height(x->right)) + 1;
+ Return x;
+}
+Struct Node *leftRotate(struct Node *x)
+{
+ Struct Node *y = x->right;
+ Struct Node *T2 = y->left;
+ y->left = x;
+ x->right = T2;
+ x->height = max(height(x->left), 
+ height(x->right)) + 1;
+ y->height = max(height(y->left),
+ height(y->right)) + 1;
+return y;
+} 
+Int getBalance(struct Node *N)
+{
+ If (N == NULL)
+ Return 0;
+ Return height(N->left) – height(N->right);
+}
+Struct Node* insert(struct Node* node, int key)
+{
+ If (node == NULL)
+ Return(newNode(key));
+ If (key < node->key)
+ Node->left = insert(node->left, key);
+ Else if (key > node->key)
+ Node->right = insert(node->right, key);
+ Else
+ Return node;
+ Node->height = 1 + max(height(node->left),
+ Height(node->right));
+ int balance = getBalance(node);
+ if (balance > 1 && key < node->left->key)
+ Return rightRotate(node);
+ If (balance < -1 && key > node->right->key)
+ Return leftRotate(node);
+ if (balance > 1 && key > node->left->key)
+ {
+ Node->left = leftRotate(node->left);
+ Return rightRotate(node);
+}
+ if (balance < -1 && key < node->right->key)
+ {
+ Node->right = rightRotate(node->right);
+ Return leftRotate(node);
+ }
+ Return node;
+}
+Void preOrder(struct Node *root)
+{
+ if(root != NULL)
+ {
+ Printf(“%d “, root->key);
+ preOrder(root->left);
+ preOrder(root->right);
+ }
+}
+int main()
+{
+ Struct Node *root = NULL;
+ Root = insert(root, 10);
+ Root = insert(root, 20);
+ Root = insert(root, 30);
+ Root = insert(root, 40);
+ Root = insert(root, 50);
+ Root = insert(root, 25);
+ Printf(“Preorder traversal of the constructed AVL”
+ “ tree is \n”);
+preOrder(root);
+ return 0;
+}
+Q-Delete in linked list 
+#include <stdio.h> 
+#include <stdlib.h> 
+Typedef struct Node { 
+ Int number; 
+ Struct Node* next; 
+} Node; 
+Void Push(Node** head, int A) 
+{ 
+ Node* n = malloc(sizeof(Node)); 
+ n->number = A; 
+ n->next = *head; 
+ *head = n; 
+} 
+Void deleteN(Node** head, int position) 
+{ 
+ Node* temp; 
+ Node* prev; 
+ Temp = *head; 
+ Prev = *head; 
+ For (int I = 0; I < position; i++) { 
+ If (I == 0 && position == 1) { 
+ *head = (*head)->next; 
+ Free(temp); 
+ } 
+ Else {
+If (I == position – 1 && temp) { 
+ Prev->next = temp->next; 
+ Free(temp); 
+ } 
+ Else { 
+ Prev = temp;
+ If (prev == NULL) 
+ Break; 
+ Temp = temp->next; 
+ } 
+ } 
+ } 
+} 
+Void printList(Node* head) 
+{ 
+ While (head) { 
+Printf(“[%i] [%p]->%p\n”, head->number, head, 
+ Head->next); 
+ Head = head->next;
+ } 
+ Printf(“\n\n”); 
+} 
+int main()
+{ 
+ Node* list = malloc(sizeof(Node)); 
+ List->next = NULL; 
+ Push(&list, 1); 
+ Push(&list, 2); 
+ Push(&list, 3);
+printList (list);
+ deleteN(&list, 1); 
+ printList(list); 
+ return 0; 
+}
+Q- BFS 
+#include <stdio.h>
+#include <stdlib.h>
+#define V 10
+Int main() {
+ Struct queue {
+ Int adj[V];
+ Int front;
+ Int rear;
+ }; 
+ Struct node {
+ Int d;
+ Struct node * next;
+ };
+ Struct Graph {
+ Struct node * vertices[V]; 
+ Int vis[V];
+ Struct edge {
+ Int s;
+ Int d;
+ };
+ Struct queue * createQ() {
+ Struct queue* Q = malloc(sizeof(struct queue));
+ Q->front = -1;
+Q->rear = -1;
+ Return Q;
+ }
+ 
+ Struct queue * enq(struct queue * q, int toVisit){
+ Struct queue * Q = q;
+ If (Q->rear==-1) Q->front++;
+ Q->rear++;
+ Q->adj[Q->rear] = toVisit;
+ Return Q;
+ }
+ 
+ Int deq(struct queue * q){
+ Struct queue * Q = q;
+ Int removed = Q->adj[Q->front];
+ Q->front++;
+ Return removed;
+ }
+ 
+ Void printQ(struct queue * q){
+ Struct queue * Q = q;
+ For(int I = Q->front; I < Q->rear; i++){
+ Printf(“%d,”,Q->adj[i]);
+ }
+ Printf(“\n”);
+ }
+ Struct Graph * e2g(struct edge edges[], int e){
+ Struct Graph * graph = (struct Graph *)malloc(sizeof(struct Graph));
+ For (int I = 0; I < V; i++){
+Graph->vertices[i] = NULL; 
+ }
+ For (int I = 0; I < e; i++){ //loop to add the edges to the graph
+ Int src = edges[i].s;
+ Int dest = edges[i].d;
+ Struct node * newNode = (struct node *)malloc(sizeof(struct node));
+ newNode->d = dest; //create a new node for destination
+ newNode->next = graph->vertices[src]; 
+ graph->vertices[src] = newNode; 
+ }
+ Return graph;
+ }
+ Void bfs(struct Graph * gr, int start){
+ For (int I = 0; I < V; i++){
+ Gr->vis[i] = 0;
+ Printf(“>>BFS Traversal<<\n”);
+ Struct Graph * graph = gr;
+ Struct queue * q = createQ();
+ Q = enq(q, start); 
+ Graph->vis[start] = 1;
+ While (q->front <= q->rear)
+ Printf(“%d->”, visit);
+ Int visit = deq(q); 
+ Struct node * temp = graph->vertices[visit]; 
+ While (temp)
+ If (graph->vis[temp->d] == 0){
+ Q = enq(q, temp->d);
+ Graph->vis[temp->d] = 1;
+ }
+Temp = temp->next;
+ } 
+ }
+ Printf(“END\n”); 
+ }
+ Struct edge edges [] = {{1,2}, {1,3}, {2,3}, {2,4}, {3,4}, {4,5}};
+ Int num = sizeof(edges)/sizeof(edges[0]);
+ Struct Graph * g = e2g(edges, num);
+ Bfs(g,1);
+ Return 0;
+}
